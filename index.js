@@ -14,5 +14,21 @@ client.categories = fs.readdirSync(path.resolve('commands'));
 ["command"].forEach(handler => {
     require(path.resolve(`handlers/${handler}`))(client);
 }); 
+const prefixSchema = require('./models/prefix');
+client.prefix = async function(message) {
+	let custom;
 
+	const data = await prefixSchema
+		.findOne({ Guild: message.guild.id })
+		.catch(err => console.log(err));
+
+	if (data) {
+		custom = data.Prefix;
+	} else {
+		custom = prefix;
+	}
+	return custom;
+};
+require('./database/MongoDb')
+require('discord-reply');
 client.login(process.env.TOKEN);
