@@ -1,4 +1,4 @@
-const client = require('../../src/index')
+const client = require('../index')
 const prefix = client.prefix;
 const { Collection } = require('discord.js');
 const Timeout = new Collection();

@@ -1,4 +1,4 @@
-const client = require('../../src/index');
+const client = require('../index');
 
 client.on('ready', () => {
     console.log(`${client.user.tag} is now online!`);
